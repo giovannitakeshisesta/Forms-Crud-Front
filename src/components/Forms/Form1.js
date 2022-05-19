@@ -21,7 +21,7 @@ const Form1 = () => {
 
         create(data)
         .then((response)=> console.log(response))
-        .catch((err)=> { setBackErrors(err?.response?.data?.errors) })
+        .catch((err)=> setBackErrors(err?.response?.data) )
         .finally(() => setIsSubmitting(false) )
     }
 
@@ -34,10 +34,10 @@ const Form1 = () => {
                 <input 
                     type="email" 
                     {...register("email")}
-                    className={`form-control ${backErrors?.email  || errors.email?.message ? 'is-invalid' : ''}`}
+                    className={`form-control ${backErrors?.message  || errors.email?.message ? 'is-invalid' : ''}`}
                     id="xxx" 
                 />
-                <p className="invalid-feedback">{backErrors?.email  || errors.email?.message }</p>
+                <p className="invalid-feedback">{backErrors?.message  || errors.email?.message }</p>
             </div>
 
             <button 

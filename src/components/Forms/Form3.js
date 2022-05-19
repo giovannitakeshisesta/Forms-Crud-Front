@@ -34,7 +34,7 @@ export default function  Form3 ({prefillValues,rerenderList}) {
 
         findByIdAndUpdate(id,data)
         .then(()=> rerenderList())
-        .catch((err)=> { setBackErrors(err?.response?.data.errors) })
+        .catch((err)=> setBackErrors(err?.response?.data) )
         .finally(() => setIsSubmitting(false) )
     }
 
@@ -45,7 +45,7 @@ export default function  Form3 ({prefillValues,rerenderList}) {
                 label="Email"
                 id="email"
                 register={register}
-                error={backErrors.email||errors.email?.message}
+                error={backErrors.message||errors.email?.message}
                 type="email"
             />
             <button 

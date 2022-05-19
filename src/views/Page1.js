@@ -31,13 +31,12 @@ export default function Page1() {
           <hr/>
           <Form2 rerenderList={rerenderList}/>
           <hr/>
-          {list &&
+          {list ?
           <List1 list={list} find={find}/>
+          : <p>...Loading</p>
           }
           <hr/>
-          {prefillValues && 
           <Form3 prefillValues={prefillValues} rerenderList={rerenderList}/> 
-          }
         </div>
     </div>
   )

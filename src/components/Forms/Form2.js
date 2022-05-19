@@ -22,10 +22,10 @@ const Form2 = ({rerenderList}) => {
 
         create(data)
         .then(()=> rerenderList())
-        .catch((err)=> { setBackErrors(err?.response?.data.errors) })
+        .catch((err)=> setBackErrors(err?.response?.data) )
         .finally(() => setIsSubmitting(false) )
     }
-
+    
     return (
         <form>
             <p>FORM 2 - The same as before, but with an input component</p>
@@ -34,7 +34,7 @@ const Form2 = ({rerenderList}) => {
                 label="Email"
                 id="email"
                 register={register}
-                error={backErrors.email||errors.email?.message}
+                error={backErrors.message||errors.email?.message}
                 type="email"
             />
             <button 
