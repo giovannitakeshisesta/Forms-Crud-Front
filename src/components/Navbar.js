@@ -23,6 +23,9 @@ const Navbar = () => {
                 <NavLink  to="/page2"> Page 2 </NavLink>
                 </li>
 
+                <li className="nav-item ms-4">
+                <NavLink  to="/page3"> Page 3 </NavLink>
+                </li>
             </ul>
             </div>
         </div>

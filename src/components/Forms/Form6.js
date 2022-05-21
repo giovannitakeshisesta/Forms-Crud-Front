@@ -2,16 +2,17 @@ import { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
+import { findByIdAndUpdate2 } from '../../services/form1.service';
 import InputGroup from './InputGroup';
-import { findByIdAndUpdate } from '../../services/form1.service';
 
 const schema = yup.object({
-    email: yup.string().email(),
+    name:yup.string().required().min(2),
+    email: yup.string().email().required(),
 }).required();
 
-export default function  Form3 ({prefillValues,rerenderList}) {
-    
-    const [backErrors, setBackErrors]     = useState({})    
+const Form6 = ({prefillValues,rerenderList}) => {
+    const [backErrors, setBackErrors]     = useState(false)   
+    const [duplicateErr, setDuplicateErr] = useState(false)
     const [isSubmitting, setIsSubmitting] = useState(false)
     const { register, handleSubmit,reset, formState:{ errors } } = useForm({
         resolver: yupResolver(schema),
@@ -28,29 +29,46 @@ export default function  Form3 ({prefillValues,rerenderList}) {
         setBackErrors({})
         setIsSubmitting(true)
 
-        findByIdAndUpdate(id,data)
+        findByIdAndUpdate2(id,data)
         .then(()=> rerenderList())
-        .catch((err)=> setBackErrors(err?.response?.data.errors) )
+        .catch((err)=> {
+            if (err.response.data.message ==='Already exists, msg from app.js' ){
+                setDuplicateErr(true)
+            }
+            setBackErrors(err?.response?.data.errors) 
+        })
         .finally(() => setIsSubmitting(false) )
     }
-
+    
+    console.log(backErrors);
     return (
         <form>
-            <p>FORM 3 - EDIT</p>
+            <p>FORM 6 - EDIT</p>
+            <InputGroup
+                label="Name"
+                id="name"
+                type="name"
+                register={register}
+                error={backErrors?.name||errors.name?.message}
+            />
+
             <InputGroup
                 label="Email"
                 id="email"
                 type="email"
                 register={register}
                 error={backErrors?.email||errors.email?.message}
+                duplicateErr={duplicateErr}
             />
+            
             <button 
                 className={`mb-3 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}
                 onClick={handleSubmit(onSubmit)}
                 >
-                {isSubmitting ? 'Editing...' : 'Edit'}
+                {isSubmitting ? 'Submitting...' : 'Submit'}
             </button>
         </form>      
     )
 }
 
+export default Form6
