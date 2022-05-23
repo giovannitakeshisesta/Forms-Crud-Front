@@ -26,6 +26,11 @@ const Navbar = () => {
                 <li className="nav-item ms-4">
                 <NavLink  to="/page3"> Page 3 </NavLink>
                 </li>
+
+
+                <li className="nav-item ms-4">
+                <NavLink  to="/page4"> Page 4 </NavLink>
+                </li>
             </ul>
             </div>
         </div>

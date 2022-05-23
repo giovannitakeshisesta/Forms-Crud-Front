@@ -2,7 +2,6 @@ import React from 'react'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import { createRadio } from '../../services/form1.service';
 import '../../style/App.css'
 
 const RadioInput = ({errors, register,label, name, id}) => {
@@ -20,25 +19,25 @@ const RadioInput = ({errors, register,label, name, id}) => {
     );
 }
 
-
-export default function RadioSimple() {
+export default function RadioEdit({prefillValues}) {
+    
     const schema = yup.object({
         radioInput: yup.string().typeError('Required').required('')
     }).required();
-
+    
     const { register, handleSubmit, formState:{ errors } } = useForm({
-        resolver: yupResolver(schema)
+        resolver: yupResolver(schema),
+        defaultValues:prefillValues
     });
+    // console.log(defaultValues)
 
     const onSubmit = (data) => {
-        console.log("hola radio", data.radioInput);
-        createRadio(data)
-        .then(()=>{})
-        .catch(()=>{})
+        console.log("hola radio", data,prefillValues);
     }
     return (
         <form>
             <div className="form-group">
+                <p>EDIT</p>
                 <RadioInput
                     label="Yes"
                     name="radioInput"

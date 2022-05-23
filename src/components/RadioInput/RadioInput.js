@@ -1,8 +1,10 @@
+import React from 'react';
+
 const RadioInput = ({errors, register,label, name, id}) => {
     return (
         <div className="form-check">
-            <input
-            className={` ${errors?.radioInput ? 'radioRed ' : ''}`}
+            <input 
+            className={ `${errors ? 'radioRed ' : ''} `}
             {...register(name)}
             type="radio"
             id={id}

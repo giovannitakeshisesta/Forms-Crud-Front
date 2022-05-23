@@ -1,5 +1,10 @@
+import React from "react";
 const InputGroup = ({ label, id, type, register, error ,duplicateErr}) => {
-  console.log(error);
+
+  const isDuplicate = () =>{
+    if (String(duplicateErr).includes(String(id)))  return true
+  }
+
   return (
     <div className="mb-3">
       <label htmlFor={id} className="form-label">
@@ -10,11 +15,11 @@ const InputGroup = ({ label, id, type, register, error ,duplicateErr}) => {
         type={type}
         id={id}
         {...register(id)}
-        className={`form-control ${error || duplicateErr ? 'is-invalid' : ''}`}
+        className={`form-control ${error || isDuplicate() ? 'is-invalid' : ''}`}
       />
       
       <p className="invalid-feedback">{error}</p>  
-      {duplicateErr &&  <p className="invalid-feedback">Duplicate error</p>}
+      {isDuplicate() && <p className="invalid-feedback">{duplicateErr}</p> }
     </div>
   )
 }
