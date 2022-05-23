@@ -3,8 +3,9 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { findByIdAndUpdateMixed } from '../../services/form1.service';
-import InputGroup from './InputGroup';
-import RadioInput from '../RadioInput/RadioInput';
+import InputGroup from '../Inputs/InputGroup';
+import RadioInput from '../Inputs/RadioInput';
+
 
 const schema = yup.object({
     email: yup.string().email().required(),

@@ -3,8 +3,9 @@ import { useForm }  from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import { createMixed } from '../../services/form1.service';
-import InputGroup from './InputGroup';
-import RadioInput from '../RadioInput/RadioInput';
+import RadioInput from '../Inputs/RadioInput';
+import InputGroup from '../Inputs/InputGroup';
+
 
 const schema = yup.object({
     name:yup.string().required().min(2),

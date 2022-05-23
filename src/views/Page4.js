@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import MixedForm from '../components/Forms/MixedForm';
 import MixedFormEdit from '../components/Forms/MixedFormEdit';
 import MixedFormList from '../components/List/MixedFormList';
-import { findAll2, findAllMixed, findById2, findByIdMixed } from '../services/form1.service';
+import { findAllMixed, findByIdMixed } from '../services/form1.service';
 
 
 export default function Page3() {
