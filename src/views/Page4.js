@@ -23,7 +23,6 @@ export default function Page3() {
     .then(response => setPrefillValues(response.data))
   }
     
-  console.log("prefillValues",prefillValues);
   return (
     <div>
       <h1>Page 4</h1>
@@ -37,6 +36,7 @@ export default function Page3() {
         }
         <hr/>
         <MixedFormEdit prefillValues={prefillValues} rerenderList={rerenderList}/>
+        
       </div>    
     </div>
   )

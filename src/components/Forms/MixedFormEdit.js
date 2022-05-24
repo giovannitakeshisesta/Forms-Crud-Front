@@ -5,12 +5,14 @@ import * as yup from "yup";
 import { findByIdAndUpdateMixed } from '../../services/form1.service';
 import InputGroup from '../Inputs/InputGroup';
 import RadioInput from '../Inputs/RadioInput';
+import TextAreaInput from '../Inputs/TextAreaInput';
 
 
 const schema = yup.object({
     email: yup.string().email().required(),
     name:yup.string().required().min(2),
     radioInput: yup.string().typeError('Required').required(''),
+    description: yup.string().required('Required').min(2),
 }).required();
 
 const MixedFormEdit = ({prefillValues,rerenderList}) => {
@@ -22,7 +24,7 @@ const MixedFormEdit = ({prefillValues,rerenderList}) => {
         defaultValues:prefillValues
     });
 
-    //when prefillvalues change reset allow the update
+    //when prefillvalues change reset allows the update
     useEffect(() => {
         reset(prefillValues);
     }, [prefillValues, reset]);
@@ -41,7 +43,7 @@ const MixedFormEdit = ({prefillValues,rerenderList}) => {
             }
             setBackErrors(err?.response?.data.errors) 
         })
-        .finally(() => setIsSubmitting(false) )
+        .finally(() => setIsSubmitting(false))
     }
 
     return (
@@ -85,6 +87,14 @@ const MixedFormEdit = ({prefillValues,rerenderList}) => {
             />
             <p className="redText">{backErrors?.radioInput||errors.radioInput?.message}</p>
 
+            {/* TEXT AREA */}
+            <TextAreaInput 
+                name="description"
+                error={backErrors?.description||errors.description?.message}
+                register={register}
+            />
+
+            {/* BUTTON */}
             <button 
                 className={`mb-3 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}
                 onClick={handleSubmit(onSubmit)}

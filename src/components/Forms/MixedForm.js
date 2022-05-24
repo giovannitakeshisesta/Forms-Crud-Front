@@ -5,19 +5,21 @@ import * as yup from "yup";
 import { createMixed } from '../../services/form1.service';
 import RadioInput from '../Inputs/RadioInput';
 import InputGroup from '../Inputs/InputGroup';
+import TextAreaInput from '../Inputs/TextAreaInput';
 
 
 const schema = yup.object({
     name:yup.string().required().min(2),
     email: yup.string().email().required(),
     radioInput: yup.string().typeError('Required').required(''),
+    description: yup.string().required('Required').min(2),
 }).required();
 
 const MixedForm = ({rerenderList}) => {
     const [backErrors, setBackErrors]     = useState(false)    // back end errors
     const [duplicateErr, setDuplicateErr] = useState("")  
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const { register, handleSubmit, formState:{ errors } } = useForm({
+    const { register, handleSubmit, reset, formState:{ errors } } = useForm({
         resolver: yupResolver(schema)
     });
 
@@ -27,7 +29,10 @@ const MixedForm = ({rerenderList}) => {
         setIsSubmitting(true)
 
         createMixed(data)
-        .then(()=> rerenderList())
+        .then(()=> {
+            reset()
+            rerenderList()
+        })
         .catch((err)=> {
             if (err.response.data.message.includes("Duplicate") ){
                 setDuplicateErr(err.response.data.message)
@@ -35,6 +40,7 @@ const MixedForm = ({rerenderList}) => {
             setBackErrors(err?.response?.data.errors) 
         })
         .finally(() => setIsSubmitting(false) )
+
     }
 
     return (
@@ -78,8 +84,14 @@ const MixedForm = ({rerenderList}) => {
             />
             <p className="redText">{backErrors?.radioInput||errors.radioInput?.message}</p>
    
-            
+            {/* TEXT AREA */}
+            <TextAreaInput 
+                name="description"
+                error={backErrors?.description||errors.description?.message}
+                register={register}
+            />
 
+            {/* BUTTON */}
             <button 
                 className={`mb-3 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}
                 onClick={handleSubmit(onSubmit)}
