@@ -6,11 +6,13 @@ import { createMixed } from '../../services/form1.service';
 import RadioInput from '../Inputs/RadioInput';
 import InputGroup from '../Inputs/InputGroup';
 import TextAreaInput from '../Inputs/TextAreaInput';
+import CheckBoxInput from '../Inputs/CheckBoxInput';
 
 
 const schema = yup.object({
     name:yup.string().required().min(2),
     email: yup.string().email().required(),
+    age: yup.number().required().typeError('Required').min(1), 
     radioInput: yup.string().typeError('Required').required(''),
     description: yup.string().required('Required').min(2),
 }).required();
@@ -40,65 +42,70 @@ const MixedForm = ({rerenderList}) => {
             setBackErrors(err?.response?.data.errors) 
         })
         .finally(() => setIsSubmitting(false) )
-
     }
 
     return (
-        <form>
-            <p>FORM 5</p>
-            {/* NAME */}
-            <InputGroup
-                label="Name"
-                id="name"
-                type="name"
-                register={register}
-                error={backErrors?.name||errors.name?.message}
-                duplicateErr={duplicateErr}
-            />
+    <form>
+        <p>MIXED FORM </p>
+        {/* NAME */}
+        <InputGroup
+            label="Name"
+            id="name"
+            type="name"
+            register={register}
+            error={backErrors?.name||errors.name?.message}
+            duplicateErr={duplicateErr}
+        />
 
-            {/* EMAIL */}
-            <InputGroup
-                label="Email"
-                id="email"
-                type="email"
-                register={register}
-                error={backErrors?.email||errors.email?.message}
-                duplicateErr={duplicateErr}
-            />
+        {/* EMAIL */}
+        <InputGroup
+            label="Email"
+            id="email"
+            type="email"
+            register={register}
+            error={backErrors?.email||errors.email?.message}
+            duplicateErr={duplicateErr}
+        />
 
-            {/* RADIO */}
-            <RadioInput
-                label="Yes"
-                name="radioInput"
-                id="yes"
-                errors={backErrors?.radioInput||errors.radioInput?.message}
-                register={register}
-            />
+        {/* NUMBER */}
+        <InputGroup
+            label="Age"
+            id="age"
+            type="number"
+            register={register}
+            error={backErrors?.age||errors.age?.message}
+        />
 
-            <RadioInput
-                label="No"
-                name="radioInput"
-                id="no"
-                errors={backErrors?.radioInput||errors.radioInput?.message}
-                register={register}
-            />
-            <p className="redText">{backErrors?.radioInput||errors.radioInput?.message}</p>
-   
-            {/* TEXT AREA */}
-            <TextAreaInput 
-                name="description"
-                error={backErrors?.description||errors.description?.message}
-                register={register}
-            />
+        {/* RADIO */}
+        <RadioInput
+            name="radioInput"
+            list={["yes","no", "maybe"]}
+            register={register}
+            errors={backErrors?.radioInput||errors.radioInput?.message}
+        />
 
-            {/* BUTTON */}
-            <button 
-                className={`mb-3 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}
-                onClick={handleSubmit(onSubmit)}
-                >
-                {isSubmitting ? 'Submitting...' : 'Submit'}
-            </button>
-        </form>      
+        {/* TEXT AREA */}
+        <TextAreaInput 
+            name="description"
+            error={backErrors?.description||errors.description?.message}
+            register={register}
+        />
+
+        {/* CHECK BOX */}
+        <CheckBoxInput 
+            name="checkBoxList"
+            list={["a", "b", "c"]}
+            register={register}
+        />
+
+        {/* BUTTON */}
+        <button 
+            className={`mb-3 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}
+            onClick={handleSubmit(onSubmit)}
+            >
+            {isSubmitting ? 'Submitting...' : 'Submit'}
+        </button>
+    </form>      
     )
 }
 
