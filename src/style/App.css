@@ -1,7 +1,16 @@
 .App {
 }
+a{
+  text-decoration: none;
+}
 p {
   margin-bottom: 0;
+}
+
+.frcb{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .formDiv{
@@ -25,7 +34,3 @@ p {
   margin-top: 0.25rem;
 }
 
-.checkBox{
-  display: flex;
-  align-items: center;
-}

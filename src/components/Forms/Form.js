@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'react' 
-import { useForm } from "react-hook-form";
+import { useState } from 'react' 
+import { useForm }  from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import { findByIdAndUpdateMixed } from '../../services/form1.service';
-import InputGroup from '../Inputs/InputGroup';
+import { createMixed } from '../../services/form1.service';
 import RadioInput from '../Inputs/RadioInput';
+import InputGroup from '../Inputs/InputGroup';
 import TextAreaInput from '../Inputs/TextAreaInput';
 import CheckBoxInput from '../Inputs/CheckBoxInput';
 import Button from '../../Button';
@@ -18,38 +18,36 @@ const schema = yup.object({
     description: yup.string().required('Required').min(2),
     checkBoxList:yup.array().typeError('Required').min(2, "min 2 required.")
 
+
 }).required();
 
-
-const MixedFormEdit = ({prefillValues,rerenderList}) => {
-    const [backErrors, setBackErrors]     = useState(false)   
-    const [duplicateErr, setDuplicateErr] = useState("")
+const Form = ({rerenderList}) => {
+    const [backErrors, setBackErrors]     = useState(false)    
+    const [duplicateErr, setDuplicateErr] = useState("")  
     const [isSubmitting, setIsSubmitting] = useState(false)
-    const { register, handleSubmit,reset, formState:{ errors } } = useForm({
-        resolver: yupResolver(schema),
-        defaultValues:prefillValues
+    const { register, handleSubmit, reset, formState:{ errors } } = useForm({
+        resolver: yupResolver(schema)
     });
 
-    //when prefillvalues change reset allows the update
-    useEffect(() => {
-        reset(prefillValues);
-    }, [prefillValues, reset]);
-
-    const onSubmit = (data) => {
-        const {id} = data
-        setBackErrors({})
+    // console.log(backErrors);
+    const create = (data) => {
+        setBackErrors(false)
         setDuplicateErr("")
         setIsSubmitting(true)
 
-        findByIdAndUpdateMixed(id,data)
-        .then(()=> rerenderList())
+        createMixed(data)
+        .then(()=> {
+            reset()
+            rerenderList()
+        })
         .catch((err)=> {
+            console.log(err.response.data);
             if (err.response.data.message.includes("Duplicate") ){
                 setDuplicateErr(err.response.data.message)
             }
             setBackErrors(err?.response?.data.errors) 
         })
-        .finally(() => setIsSubmitting(false))
+        .finally(() => setIsSubmitting(false) )
     }
 
     return (
@@ -113,10 +111,10 @@ const MixedFormEdit = ({prefillValues,rerenderList}) => {
         <Button 
         isSubmitting={isSubmitting}
         handleSubmit={handleSubmit}
-        onSubmit={onSubmit}
-        />
-    </form>     
+        action={create}
+        /> 
+    </form>      
     )
 }
 
-export default MixedFormEdit
+export default Form

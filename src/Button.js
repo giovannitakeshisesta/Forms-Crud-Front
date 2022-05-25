@@ -1,12 +1,12 @@
 import React from 'react'
 
-export default function Button({isSubmitting,handleSubmit,onSubmit}) {
+export default function Button({isSubmitting,handleSubmit,action, text}) {
   return (
     <button 
         className={`mb-3 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}
-        onClick={handleSubmit(onSubmit)}
+        onClick={handleSubmit(action)}
         >
-        {isSubmitting ? 'Submitting...' : 'Submit'}
+        {isSubmitting ? text : text}
     </button>
   )
 }

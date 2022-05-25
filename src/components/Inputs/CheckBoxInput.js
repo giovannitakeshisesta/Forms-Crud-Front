@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default function CheckBoxInput({label,name,list,errors,register}) {
-  console.log(errors);
   return (
     <div className='mb-3'>
     <p>{label}</p>
@@ -16,7 +15,6 @@ export default function CheckBoxInput({label,name,list,errors,register}) {
                 {...register(name)} 
                 />
 
-                {/* <p htmlFor={el} >{el} </p> */}
                 <label 
                 className="form-check-label" 
                 htmlFor={el}
