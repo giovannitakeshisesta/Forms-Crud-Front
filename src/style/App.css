@@ -1,8 +1,12 @@
 .App {
 }
+p {
+  margin-bottom: 0;
+}
 
 .formDiv{
-  width: 50%;
+  width: 35%;
+  padding: 10px;
   border:  1px solid lightgrey;
 }
 
@@ -16,5 +20,12 @@
 }
 
 .redText{
-  color: red;
+  color: #dc3545;
+  font-size: .875em;
+  margin-top: 0.25rem;
+}
+
+.checkBox{
+  display: flex;
+  align-items: center;
 }

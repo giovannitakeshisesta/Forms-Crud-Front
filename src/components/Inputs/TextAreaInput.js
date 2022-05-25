@@ -1,14 +1,14 @@
 import React from 'react'
 
-const TextAreaInput = ({name,error,register,rows,cols}) => {
+const TextAreaInput = ({label,name,error,register,rows,cols}) => {
   return (
-    <div>
+    <div className='mb-3'>
+        <label>{label}</label>
         <textarea  
             className={`form-control ${error ? 'is-invalid' : ''}`}
             { ...register(name) } 
             rows={rows} cols={cols}
         />
-        
         <p className="invalid-feedback">{error}</p>
     </div>
   )

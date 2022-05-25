@@ -7,6 +7,7 @@ import RadioInput from '../Inputs/RadioInput';
 import InputGroup from '../Inputs/InputGroup';
 import TextAreaInput from '../Inputs/TextAreaInput';
 import CheckBoxInput from '../Inputs/CheckBoxInput';
+import Button from '../../Button';
 
 
 const schema = yup.object({
@@ -15,6 +16,9 @@ const schema = yup.object({
     age: yup.number().required().typeError('Required').min(1), 
     radioInput: yup.string().typeError('Required').required(''),
     description: yup.string().required('Required').min(2),
+    checkBoxList:yup.array().typeError('Required').min(2, "min 2 required.")
+
+
 }).required();
 
 const MixedForm = ({rerenderList}) => {
@@ -25,6 +29,7 @@ const MixedForm = ({rerenderList}) => {
         resolver: yupResolver(schema)
     });
 
+    // console.log(backErrors);
     const onSubmit = (data) => {
         setBackErrors(false)
         setDuplicateErr("")
@@ -36,6 +41,7 @@ const MixedForm = ({rerenderList}) => {
             rerenderList()
         })
         .catch((err)=> {
+            console.log(err.response.data);
             if (err.response.data.message.includes("Duplicate") ){
                 setDuplicateErr(err.response.data.message)
             }
@@ -46,10 +52,9 @@ const MixedForm = ({rerenderList}) => {
 
     return (
     <form>
-        <p>MIXED FORM </p>
         {/* NAME */}
         <InputGroup
-            label="Name"
+            label="Text"
             id="name"
             type="name"
             register={register}
@@ -69,7 +74,7 @@ const MixedForm = ({rerenderList}) => {
 
         {/* NUMBER */}
         <InputGroup
-            label="Age"
+            label="Number"
             id="age"
             type="number"
             register={register}
@@ -78,6 +83,7 @@ const MixedForm = ({rerenderList}) => {
 
         {/* RADIO */}
         <RadioInput
+            label="Radio"
             name="radioInput"
             list={["yes","no", "maybe"]}
             register={register}
@@ -86,25 +92,27 @@ const MixedForm = ({rerenderList}) => {
 
         {/* TEXT AREA */}
         <TextAreaInput 
+            label="TextArea"
             name="description"
-            error={backErrors?.description||errors.description?.message}
             register={register}
+            error={backErrors?.description||errors.description?.message}
         />
 
         {/* CHECK BOX */}
         <CheckBoxInput 
+            label="Check Box"
             name="checkBoxList"
             list={["a", "b", "c"]}
             register={register}
+            errors={backErrors?.checkBoxList||errors.checkBoxList?.message}
         />
 
         {/* BUTTON */}
-        <button 
-            className={`mb-3 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}
-            onClick={handleSubmit(onSubmit)}
-            >
-            {isSubmitting ? 'Submitting...' : 'Submit'}
-        </button>
+        <Button 
+        isSubmitting={isSubmitting}
+        handleSubmit={handleSubmit}
+        onSubmit={onSubmit}
+        />
     </form>      
     )
 }

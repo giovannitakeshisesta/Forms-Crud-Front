@@ -1,20 +1,33 @@
 import React from 'react'
 
-export default function CheckBoxInput({name, list,register}) {
+export default function CheckBoxInput({label,name,list,errors,register}) {
+  console.log(errors);
   return (
-    <div className=''>
+    <div className='mb-3'>
+    <p>{label}</p>
     {list.map((el,index)=> {
         return (
-            <div key={index}>
+            <div key={index} className="form-check form-check-inline">
                 <input 
+                className={ `form-check-input ${errors ? 'is-invalid' : ''} `}
                 type="checkbox" 
                 id={el} 
                 value={el} 
-                {...register(name)} />
-                <p htmlFor={el} >{el} </p>
+                {...register(name)} 
+                />
+
+                {/* <p htmlFor={el} >{el} </p> */}
+                <label 
+                className="form-check-label" 
+                htmlFor={el}
+                >
+                {el}
+                </label>
             </div>
         )
     })}
+    {errors && <p className="redText">{errors}</p>  }
+    
     </div>  
   )
 }

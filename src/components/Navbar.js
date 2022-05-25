@@ -16,7 +16,7 @@ const Navbar = () => {
             <ul className="navbar-nav">
 
                 <li className="nav-item ms-4">
-                <NavLink  to="/page1"> Page 1 </NavLink>
+                <NavLink  to="/mixedFormPage"> MixedForm </NavLink>
                 </li>
 
                 <li className="nav-item ms-4">

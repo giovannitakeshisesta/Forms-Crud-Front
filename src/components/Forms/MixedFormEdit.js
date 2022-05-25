@@ -7,6 +7,7 @@ import InputGroup from '../Inputs/InputGroup';
 import RadioInput from '../Inputs/RadioInput';
 import TextAreaInput from '../Inputs/TextAreaInput';
 import CheckBoxInput from '../Inputs/CheckBoxInput';
+import Button from '../../Button';
 
 
 const schema = yup.object({
@@ -15,6 +16,8 @@ const schema = yup.object({
     age: yup.number().required().typeError('Required').min(1), 
     radioInput: yup.string().typeError('Required').required(''),
     description: yup.string().required('Required').min(2),
+    checkBoxList:yup.array().typeError('Required').min(2, "min 2 required.")
+
 }).required();
 
 
@@ -51,10 +54,9 @@ const MixedFormEdit = ({prefillValues,rerenderList}) => {
 
     return (
     <form>
-        <p>MIXED FORM EDIT</p>
         {/* NAME */}
         <InputGroup
-            label="Name"
+            label="Text"
             id="name"
             type="name"
             register={register}
@@ -74,7 +76,7 @@ const MixedFormEdit = ({prefillValues,rerenderList}) => {
 
         {/* NUMBER */}
         <InputGroup
-            label="Age"
+            label="Number"
             id="age"
             type="number"
             register={register}
@@ -83,6 +85,7 @@ const MixedFormEdit = ({prefillValues,rerenderList}) => {
 
         {/* RADIO */}
         <RadioInput
+            label="Radio"
             name="radioInput"
             list={["yes","no", "maybe"]}
             register={register}
@@ -91,26 +94,28 @@ const MixedFormEdit = ({prefillValues,rerenderList}) => {
 
         {/* TEXT AREA */}
         <TextAreaInput 
+            label="TextArea"
             name="description"
-            error={backErrors?.description||errors.description?.message}
             register={register}
+            error={backErrors?.description||errors.description?.message}
         />
 
         {/* CHECK BOX */}
-        <CheckBoxInput
+        <CheckBoxInput 
+            label="Check Box"
             name="checkBoxList"
             list={["a", "b", "c"]}
             register={register}
+            errors={backErrors?.checkBoxList||errors.checkBoxList?.message}
         />
 
         {/* BUTTON */}
-        <button 
-            className={`mb-3 btn btn-${isSubmitting ? 'secondary' : 'primary'}`}
-            onClick={handleSubmit(onSubmit)}
-            >
-            {isSubmitting ? 'Submitting...' : 'Submit'}
-        </button>
-    </form>      
+        <Button 
+        isSubmitting={isSubmitting}
+        handleSubmit={handleSubmit}
+        onSubmit={onSubmit}
+        />
+    </form>     
     )
 }
 
