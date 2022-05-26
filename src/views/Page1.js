@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react' 
 import { findAllMixed, findByIdAndDelete, findByIdMixed } from '../services/form1.service';
 import MixedForm     from '../components/Forms/MixedForm';
-import MixedFormList from '../components/List/MixedFormList';
+import List from '../components/List/List';
 
 
 export default function MixedFormPage() {
@@ -15,11 +15,13 @@ export default function MixedFormPage() {
   const rerenderList = () => {
     findAllMixed()
     .then(response => setList(response.data))
+    .catch((err)=> console.log(err))
   }
 
   const find = (id) => {
     findByIdMixed(id)
     .then(response => setPrefillValues(response.data))
+    .catch((err)=> console.log(err))
   }
 
   const del = (id) => {
@@ -45,7 +47,7 @@ export default function MixedFormPage() {
         <div className='formDiv'>
         <h2>Read - Delete</h2>
           {list ?
-          <MixedFormList list={list} find={find} del={del}/>
+          <List list={list} find={find} del={del}/>
           : 
           <p>...Loading</p>
           }
@@ -54,10 +56,7 @@ export default function MixedFormPage() {
         <div className='formDiv'>
         <h2>Update</h2>
         {prefillValues && 
-          <MixedForm 
-          prefillValues={prefillValues} 
-          rerenderList={rerenderList}
-          /> 
+          <MixedForm prefillValues={prefillValues} rerenderList={rerenderList}/> 
         }
         </div>
         

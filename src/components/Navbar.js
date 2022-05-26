@@ -29,7 +29,7 @@ const Navbar = () => {
 
 
                 <li className="nav-item ms-4">
-                <NavLink  to="/page4"> Page 4 </NavLink>
+                <NavLink  to="/imageInputPage"> Image Input </NavLink>
                 </li>
             </ul>
             </div>

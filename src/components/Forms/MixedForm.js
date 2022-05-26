@@ -22,8 +22,9 @@ const schema = yup.object({
 
 const MixedForm = ({prefillValues,rerenderList}) => {
     const [backErrors, setBackErrors]     = useState(false)   
-    const [duplicateErr, setDuplicateErr] = useState("")
     const [isSubmitting, setIsSubmitting] = useState(false)
+    const [duplicateErr, setDuplicateErr] = useState("")
+
     const { register, handleSubmit,reset, formState:{ errors } } = useForm({
         resolver: yupResolver(schema),
         defaultValues:prefillValues
@@ -40,10 +41,7 @@ const MixedForm = ({prefillValues,rerenderList}) => {
         setIsSubmitting(true)
 
         createMixed(data)
-        .then(()=> {
-            reset()
-            rerenderList()
-        })
+        .then(()=> {reset(); rerenderList()})
         .catch((err)=> {
             if (err.response.data.message.includes("Duplicate") ){
                 setDuplicateErr(err.response.data.message)

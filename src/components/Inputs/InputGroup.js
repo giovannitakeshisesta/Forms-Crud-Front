@@ -1,6 +1,5 @@
 import React from "react";
 const InputGroup = ({ label, id, type, register, error ,duplicateErr}) => {
-
   const isDuplicate = () =>{
     if (String(duplicateErr).includes(String(id)))  return true
   }
@@ -17,7 +16,6 @@ const InputGroup = ({ label, id, type, register, error ,duplicateErr}) => {
         {...register(id)}
         className={`form-control ${error || isDuplicate() ? 'is-invalid' : ''}`}
       />
-      
       <p className="invalid-feedback">{error}</p>  
       {isDuplicate() && <p className="invalid-feedback">{duplicateErr}</p> }
     </div>

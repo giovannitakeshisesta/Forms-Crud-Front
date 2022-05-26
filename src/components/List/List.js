@@ -16,6 +16,7 @@ export default function MixedFormList({find, list, del}) {
                       <p>{el.radio}</p>
                       <p>{el.description}</p>
                       <p>{el.checkBoxList}</p>
+                      <img src={el.image} alt="" className='imgForm'/>
                     </div>
                     <button
                     className='btn btn-danger'
