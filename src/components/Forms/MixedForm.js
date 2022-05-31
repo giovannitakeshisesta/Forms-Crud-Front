@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import { createMixed, findByIdAndUpdateMixed } from '../../services/form1.service';
+import { createMixed, findByIdAndUpdateMixed } from '../../services/form.service';
 import InputGroup    from '../Inputs/InputGroup';
 import RadioInput    from '../Inputs/RadioInput';
 import TextAreaInput from '../Inputs/TextAreaInput';

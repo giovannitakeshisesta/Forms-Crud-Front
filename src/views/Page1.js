@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react' 
-import { findAllMixed, findByIdAndDelete, findByIdMixed } from '../services/form1.service';
+import { findAllMixed, findByIdAndDelete, findByIdMixed } from '../services/form.service';
 import MixedForm     from '../components/Forms/MixedForm';
 import List from '../components/List/List';
 

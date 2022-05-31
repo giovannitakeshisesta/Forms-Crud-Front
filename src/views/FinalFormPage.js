@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react' 
 import List from '../components/List/List';
-import { findAllFinalForm, findByIdAndDeleteFinalForm, findByIdFinalForm } from '../services/form1.service';
+import { findAllFinalForm, findByIdAndDeleteFinalForm, findByIdFinalForm } from '../services/form.service';
 import FinalForm from '../components/Forms/FinalForm'
 
 export default function FinalFormPage() {

@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import InputGroup from '../Inputs/InputGroup';
 import Button from '../../Button';
-import { createImage,findByIdAndUpdateImage } from '../../services/form1.service';
+import { createImage,findByIdAndUpdateImage } from '../../services/form.service';
 
 const getSchema = (prefillValues) => {
     return yup.object().shape({

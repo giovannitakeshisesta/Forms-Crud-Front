@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react' 
 import ImageInput from '../components/Forms/ImageInput';
 import List from '../components/List/List';
-import { findAllImage, findByIdAndDeleteImage, findByIdImage } from '../services/form1.service';
+import { findAllImage, findByIdAndDeleteImage, findByIdImage } from '../services/form.service';
 
 export default function ImageInputPage() {
   const [list, setList]=useState(null)

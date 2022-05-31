@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import InputGroup from '../Inputs/InputGroup';
 import Button from '../../Button';
-import { createFinalForm,findByIdAndUpdateFinalForm } from '../../services/form1.service';
+import { createFinalForm,findByIdAndUpdateFinalForm } from '../../services/form.service';
 import CheckBoxInput from '../Inputs/CheckBoxInput';
 import TextAreaInput from '../Inputs/TextAreaInput';
 import RadioInput from '../Inputs/RadioInput';
