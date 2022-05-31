@@ -20,16 +20,11 @@ const Navbar = () => {
                 </li>
 
                 <li className="nav-item ms-4">
-                <NavLink  to="/page2"> Page 2 </NavLink>
-                </li>
-
-                <li className="nav-item ms-4">
-                <NavLink  to="/page3"> Page 3 </NavLink>
-                </li>
-
-
-                <li className="nav-item ms-4">
                 <NavLink  to="/imageInputPage"> Image Input </NavLink>
+                </li>
+
+                <li className="nav-item ms-4">
+                <NavLink  to="/finalform"> all together </NavLink>
                 </li>
             </ul>
             </div>

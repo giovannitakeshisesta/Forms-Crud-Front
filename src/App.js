@@ -3,9 +3,8 @@ import Navbar from './components/Navbar';
 import './style/App.css';
 import Home from './views/Home';
 import MixedFormPage from './views/Page1';
-import Page2 from './views/Page2';
-import Page3 from './views/Page3';
 import ImageInputPage from './views/ImageInputPage'
+import FinalFormPage from './views/FinalFormPage';
 
 function App() {
   return (
@@ -15,9 +14,8 @@ function App() {
         <Routes>
           <Route path='/'      element={<Home/>}/>
           <Route path='/mixedFormPage' element={<MixedFormPage/>}/>
-          <Route path='/page2' element={<Page2/>}/>
-          <Route path='/page3' element={<Page3/>}/>
           <Route path='/imageInputPage' element={<ImageInputPage/>}/>
+          <Route path='/finalform' element={<FinalFormPage/>}/>
         </Routes>
       </div>
     </div>

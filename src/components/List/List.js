@@ -13,7 +13,7 @@ export default function MixedFormList({find, list, del}) {
                       <p>{el.name}</p>
                       <p>{el.email}</p>
                       <p>{el.age}</p>
-                      <p>{el.radio}</p>
+                      <p>{el.radioInput}</p>
                       <p>{el.description}</p>
                       <p>{el.checkBoxList}</p>
                       <img src={el.image} alt="" className='imgForm'/>
