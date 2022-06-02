@@ -1,5 +1,39 @@
 .App {
-  text-align: center;
+}
+a{
+  text-decoration: none;
+}
+p {
+  margin-bottom: 0;
 }
 
+.frcb{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
 
+.formDiv{
+  width: 35%;
+  padding: 10px;
+  border:  1px solid lightgrey;
+}
+
+.radioRed{
+  -webkit-appearance:none;
+  width:13px;
+  height:13px;
+  border:1px solid red;
+  border-radius:50%;
+  outline:none;
+}
+
+.redText{
+  color: #dc3545;
+  font-size: .875em;
+  margin-top: 0.25rem;
+}
+
+.imgForm{
+  max-width: 80%;
+}

@@ -2,18 +2,20 @@ import { Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import './style/App.css';
 import Home from './views/Home';
-import Page1 from './views/Page1';
-import Page2 from './views/Page2';
+import MixedFormPage from './views/Page1';
+import ImageInputPage from './views/ImageInputPage'
+import FinalFormPage from './views/FinalFormPage';
 
 function App() {
   return (
-    <div className="App">
+    <div >
       <Navbar/>
-      <div>
+      <div className="container">
         <Routes>
           <Route path='/'      element={<Home/>}/>
-          <Route path='/page1' element={<Page1/>}/>
-          <Route path='/page2' element={<Page2/>}/>
+          <Route path='/mixedFormPage' element={<MixedFormPage/>}/>
+          <Route path='/imageInputPage' element={<ImageInputPage/>}/>
+          <Route path='/finalform' element={<FinalFormPage/>}/>
         </Routes>
       </div>
     </div>
