@@ -9,16 +9,16 @@ export default function Home() {
       <p>The design is the most simple as possible, so you can focus better on the code.</p>
       
       <ul className='mt-5'>We have 3 forms with the following fields.
-        <li>text email number radio text area check box</li>
-        <li>text image</li>
+        <li>text, email, number, radio, text, area, check box</li>
+        <li>text, image</li>
         <li>The last is the sum of the 2 forms.</li>
       </ul>
-    <p>They are separated because the image input needs a  different solution.</p>
+    <p>They are separated in different files and views because the CRUD of an image needs a different way of manage the datas.</p>
 
-    <h5 className='mt-5'>Front end validations:  Yup & react hook form</h5>
+    <h5 className='mt-5'>Front end validations: React hook form & Yup</h5>
     <p>Yup is a JavaScript schema builder for value parsing and validation. <br/>Define a schema, transform a value to match, validate the shape of an existing value, or both. </p>
 
-    <h5 className='mt-3'>Back end validations:</h5>
+    <h5 className='mt-3'>Back end validations: Mongoose</h5>
     <p>- Mongoose built in validators of SchemaType and  Custom Error Messages.<br/></p>
     <p>- the unique option for schemas ,It's a convenient helper for building MongoDB unique indexes( like E11000).</p>
 
